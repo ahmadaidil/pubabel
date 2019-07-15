@@ -21,7 +21,7 @@ function hex2rgba(hex, alpha) {
   }
 }
 
-const Button = sc.button`
+const Button = sc.div`
   background: ${p => p.background || "#000"};
   outline: none;
   border: 0;
@@ -34,10 +34,25 @@ const Button = sc.button`
   border-radius: 0.25rem;
   white-space: no-wrap;
   margin: 0.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  * {
+    margin: 0 0.5rem;
+  }
 
   :hover {
     background: ${p => hex2rgba(p.background || "#000", 0.5)};
     color: ${p => hex2rgba(p.color || "#fff", 0.5)};
+  }
+
+  g > polygon:nth-child(2) {
+    stroke: ${p => p.color || "#fff"};
+  }
+
+  :hover g > polygon:nth-child(2) {
+    stroke: ${p => hex2rgba(p.color || "#fff", 0.5)};
   }
 `;
 
